@@ -1,7 +1,34 @@
 <!DOCTYPE html>
 <html>
+<head>
+    <meta charset="UTF-8">
+    <title>Hair Salon Booking</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; text-align: center; }
+        .container { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+        iframe { width: 100%; max-width: 500px; height: 600px; border: 1px solid #ccc; }
+        form { width: 300px; text-align: left; border: 1px solid #eee; padding: 20px; border-radius: 10px; }
+        input, select, button { width: 100%; margin-bottom: 15px; padding: 8px; box-sizing: border-box; }
+    </style>
+</head>
 <body>
-    <h1>測試網頁是否正常</h1>
-    <p>如果你看得到這行字，代表 GitHub 已經成功發布了！</p>
+    <h2>Hair Salon 預約系統</h2>
+    <div class="container">
+        <iframe src="https://calendar.google.com/calendar/embed?src=be4169192858edff209b19e2b5b029010caa359127e3a173e5a527c49f9ea1c7%40group.calendar.google.com&ctz=Asia%2FTaipei&mode=WEEK"></iframe>
+
+        <form action="https://docs.google.com/forms/u/0/d/e/1FAIpQLScmibjDvcplsjkOSKl_K0J1eg31_ZMC7Xd-pvX6J6tNQZFn9g/formResponse" method="POST" target="hidden_iframe" onsubmit="submitted=true;">
+            <label>姓名</label><input type="text" name="entry.422648548" required>
+            <label>電話</label><input type="tel" name="entry.237626076" required>
+            <label>服務項目</label>
+            <select name="entry.280385501" required>
+                <option value="洗髮">洗髮</option><option value="剪髮">剪髮</option><option value="染髮">染髮</option>
+            </select>
+            <label>日期</label><input type="date" name="entry.1299058117" required>
+            <label>時間</label><input type="time" name="entry.1918295109" required>
+            <button type="submit" style="background: #000; color: #fff;">確認預約</button>
+        </form>
+    </div>
+    <script>var submitted=false;</script>
+    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted){alert('預約已送出，請留意電話通知！'); window.location.reload();}"></iframe>
 </body>
 </html>
