@@ -1,6 +1,84 @@
-<script>var submitted=false;</script>
-<iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" 
-onload="if(submitted){
-    alert('預約申請已送出！設計師已收到通知，我們將於 10 分鐘內致電給您確認最終時段，請留意電話。'); 
-    window.location.reload();
-}"></iframe>
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hair Salon | 即時預約系統</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary-color: #1a1a1a; --accent-color: #c5a059; --bg-color: #f9f9f9; }
+        body { font-family: 'Noto Sans TC', sans-serif; background-color: var(--bg-color); margin: 0; padding: 15px; }
+        .main-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; max-width: 1100px; margin: 0 auto; }
+        .calendar-section { flex: 1; min-width: 350px; background: white; padding: 20px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .calendar-container { position: relative; padding-bottom: 120%; height: 0; overflow: hidden; border-radius: 10px; border: 1px solid #eee; }
+        .calendar-container iframe { position: absolute; top:0; left: 0; width: 100%; height: 100%; border: 0; }
+        .booking-card { flex: 0 0 360px; background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-align: center; box-sizing: border-box; }
+        .logo { font-size: 24px; font-weight: 700; letter-spacing: 5px; margin-bottom: 10px; color: var(--primary-color); }
+        .subtitle { font-size: 14px; color: #888; margin-bottom: 30px; }
+        .form-group { text-align: left; margin-bottom: 18px; }
+        label { display: block; font-size: 14px; margin-bottom: 8px; color: #333; font-weight: 500; }
+        input, select { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 16px; box-sizing: border-box; font-family: inherit; }
+        button { width: 100%; padding: 15px; background-color: var(--primary-color); color: white; border: none; border-radius: 8px; font-size: 18px; font-weight: 600; cursor: pointer; transition: 0.3s; margin-top: 10px; }
+        button:hover { background-color: var(--accent-color); }
+        @media (max-width: 768px) { .main-container { flex-direction: column; } .booking-card { flex: auto; width: 100%; } }
+    </style>
+</head>
+<body>
+
+<div class="main-container">
+    <div class="calendar-section">
+        <h3 style="text-align: center; margin-top: 0; color: #333;">📅 目前預約狀況</h3>
+        <div class="calendar-container">
+            <iframe src="https://calendar.google.com/calendar/embed?src=be4169192858edff209b19e2b5b029010caa359127e3a173e5a527c49f9ea1c7%40group.calendar.google.com&ctz=Asia%2FTaipei&mode=WEEK&showNav=1&showPrint=0&showTabs=0&showCalendars=0" style="border: 0" frameborder="0" scrolling="no"></iframe>
+        </div>
+    </div>
+
+    <div class="booking-card">
+        <div class="logo">HAIR SALON</div>
+        <div class="subtitle">PREMIUM BOOKING</div>
+
+        <form action="https://docs.google.com/forms/u/0/d/e/1FAIpQLScmibjDvcplsjkOSKl_K0J1eg31_ZMC7Xd-pvX6J6tNQZFn9g/formResponse" method="POST" target="hidden_iframe" onsubmit="submitted=true;">
+            
+            <div class="form-group">
+                <label>顧客姓名</label>
+                <input type="text" name="entry.422648548" required>
+            </div>
+
+            <div class="form-group">
+                <label>聯絡電話</label>
+                <input type="tel" name="entry.237626076" required>
+            </div>
+
+            <div class="form-group">
+                <label>服務項目</label>
+                <select name="entry.280385501" required>
+                    <option value="" disabled selected>請選擇服務內容</option>
+                    <option value="洗髮">洗髮</option>
+                    <option value="剪髮">剪髮</option>
+                    <option value="全頭染">全頭染</option>
+                    <option value="挑染">挑染</option>
+                    <option value="補染">補染</option>
+                    <option value="燙髮">燙髮</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>預約日期</label>
+                <input type="date" name="entry.1299058117" required>
+            </div>
+
+            <div class="form-group">
+                <label>預約時間</label>
+                <input type="time" name="entry.1918295109" required>
+            </div>
+
+            <button type="submit">確認送出預約</button>
+        </form>
+        
+        <script>var submitted=false;</script>
+        <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted){alert('預約申請已送出！我們將於 10 分鐘內致電給您確認最終時段，請留意電話。'); window.location.reload();}"></iframe>
+    </div>
+</div>
+
+</body>
+</html>
